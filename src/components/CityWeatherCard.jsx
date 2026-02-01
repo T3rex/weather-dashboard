@@ -21,7 +21,7 @@ function CityWeatherCard({ city, onClick }) {
   const isFavorite = favorites.includes(city);
 
   const { data, error, isLoading, isFetching, refetch, fulfilledTimeStamp } =
-    useGetCurrentWeatherQuery(city);
+    useGetCurrentWeatherQuery(city, { skip: !city, pollingInterval: 60_000 });
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
