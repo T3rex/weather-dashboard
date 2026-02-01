@@ -3,7 +3,7 @@
 A modern weather dashboard built with React, Redux Toolkit, and RTK Query.
 The app displays current weather for multiple cities, allows users to manage favorites, view detailed forecasts in a modal with charts, and control settings like temperature units.
 
-Designed with clean state management, predictable caching, and explicit user control in mind.
+**Designed with clean state management, predictable caching, automatic polling and explicit user control in mind.**
 
 ## Deployed link : [Weather Dashboard](https://weather-dash99.vercel.app/)
 
@@ -55,7 +55,7 @@ Designed with clean state management, predictable caching, and explicit user con
 ## Caching Strategy
 
 - In-memory caching only (no API cache persistence)
-- keepUnusedDataFor: 60 seconds
+- Cache duration set to 60 seconds
 - Explicit manual refetch buttons for user control
 - Cache resets on full page reload (intentional)
 
@@ -63,7 +63,7 @@ Designed with clean state management, predictable caching, and explicit user con
 
 - Current weather data on the dashboard is automatically refreshed using RTK Query polling
 - Polling interval is set to 60 seconds
-- Polling runs only while the dashboard is mounted
+- Polling runs only while the dashboard is mounted/tab is active
 - Each city card updates silently in the background without UI flicker
 - The last updated timestamp is shown to indicate data freshness
 - Manual refresh is still available and works alongside polling
@@ -162,6 +162,7 @@ VITE_WEATHER_API_KEY="your_api_key_here"
 
 - [ ] Add unit tests
 - [ ] Improve mobile responsiveness
+- [ ] Add authentication and google sign-in
 
 # Contributing
 

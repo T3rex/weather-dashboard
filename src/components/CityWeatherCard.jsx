@@ -6,6 +6,7 @@ import {
 } from "../store/favoritesSlice/favoriteSlice";
 import { useGetCurrentWeatherQuery } from "../store/api/weatherApi";
 import { RotateCw, Wind, Droplet, MousePointer2, Heart } from "lucide-react";
+import { useEffect, useState } from "react";
 
 function formatTime(ts) {
   if (!ts) return "—";
@@ -14,7 +15,7 @@ function formatTime(ts) {
 
 function CityWeatherCard({ city, onClick }) {
   const dispatch = useDispatch();
-
+  const [showLoader, setShowLoader] = useState(false);
   const unit = useSelector((state) => state.root.settings.unit);
   const favorites = useSelector((state) => state.root.favorites.cities);
 
@@ -36,6 +37,19 @@ function CityWeatherCard({ city, onClick }) {
       dispatch(addFavorite(city));
     }
   };
+  useEffect(() => {
+    let timeout;
+
+    if (isFetching) {
+      setShowLoader(true);
+    } else {
+      timeout = setTimeout(() => {
+        setShowLoader(false);
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [isFetching]);
 
   // ---------------- render states ----------------
 
@@ -79,18 +93,15 @@ function CityWeatherCard({ city, onClick }) {
   return (
     <Card
       onClick={onClick}
-      className="
+      className={`
     cursor-pointer 
     transition-all 
     hover:shadow-lg 
     hover:-translate-y-0.5
     rounded-xl
-    gap-0
-  "
+    gap-0 ${showLoader ? "opacity-50" : "opacity-100"}
+  `}
     >
-      {isFetching && (
-        <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500 animate-pulse" />
-      )}
       {/* Header */}
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
@@ -134,7 +145,7 @@ function CityWeatherCard({ city, onClick }) {
             </div>
           </div>
 
-          <button onClick={handleFavoriteClick} className="mr-2">
+          <button onClick={handleFavoriteClick} className="mr-2 cursor-pointer">
             {isFavorite ? (
               <Heart size={20} strokeWidth={0.5} fill="red" />
             ) : (
