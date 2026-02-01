@@ -5,6 +5,8 @@ The app displays current weather for multiple cities, allows users to manage fav
 
 Designed with clean state management, predictable caching, and explicit user control in mind.
 
+## Deployed link : [Weather Dashboard](https://weather-dash99.vercel.app/)
+
 # ✨ Features
 
 ## 🌍 Dashboard
