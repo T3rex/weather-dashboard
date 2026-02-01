@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 import { weatherApi } from "./api/weatherApi";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
@@ -20,3 +21,5 @@ export const store = configureStore({
     },
   },
 });
+
+setupListeners(store.dispatch);
