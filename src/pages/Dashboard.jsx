@@ -4,8 +4,6 @@ import CityWeatherCard from "../components/CityWeatherCard";
 import ForecastModal from "../components/ForecastModal";
 import { useSelector } from "react-redux";
 
-const DEFAULT_CITIES = ["Delhi"];
-
 function Dashboard() {
   const favorites = useSelector((state) => state.root.favorites.cities);
   const cities = useSelector((state) => state.root.weather.cities);
@@ -13,12 +11,15 @@ function Dashboard() {
 
   let citiesToShow = [];
 
-  if (favorites.length >= 5) {
-    citiesToShow = favorites;
-  } else {
-    const remaining = cities.filter((city) => !favorites.includes(city));
-
-    citiesToShow = [...favorites, ...remaining.slice(0, 9 - favorites.length)];
+  if (favorites.length > 0) {
+    citiesToShow = [...favorites];
+    cities.map((city) => {
+      if (!citiesToShow.includes(city)) {
+        citiesToShow.push(city);
+      }
+    });
+  } else if (cities.length > 0) {
+    citiesToShow = [...cities];
   }
 
   useEffect(() => {
