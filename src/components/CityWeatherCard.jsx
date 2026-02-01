@@ -71,7 +71,6 @@ function CityWeatherCard({ city, onClick }) {
   const country = data.location.country;
   const windspeed = data.current.wind_kph;
   const direction = data.current.wind_dir;
-  console.log("data", data);
 
   return (
     <Card
@@ -134,7 +133,7 @@ function CityWeatherCard({ city, onClick }) {
         <div className="flex items-end justify-between">
           <div className="space-y-1 text-sm text-muted-foreground">
             <p className="flex flex-row gap-1">
-              <Droplet size={20} strokeWidth={1} fill="blue" />
+              <Droplet size={20} strokeWidth={1} fill="aqua" stroke="aqua" />
               <span className="font-medium text-foreground">Humidity :</span>
               {humidity}%
             </p>
@@ -144,7 +143,7 @@ function CityWeatherCard({ city, onClick }) {
               {windspeed} kph
             </p>
             <p className="flex gap-1">
-              <MousePointer2 size={20} strokeWidth={1} />
+              <MousePointer2 size={20} strokeWidth={1} fill="black" />
               <span className="font-medium text-foreground ">
                 Direction:
               </span>{" "}
