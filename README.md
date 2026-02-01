@@ -59,8 +59,12 @@ Designed with clean state management, predictable caching, and explicit user con
 
 ## Polling
 
-- Dashboard data polls every 60 seconds
-- Polling active
+- Current weather data on the dashboard is automatically refreshed using RTK Query polling
+- Polling interval is set to 60 seconds
+- Polling runs only while the dashboard is mounted
+- Each city card updates silently in the background without UI flicker
+- The last updated timestamp is shown to indicate data freshness
+- Manual refresh is still available and works alongside polling
 
 # 🗂️ Folder Structure
 
