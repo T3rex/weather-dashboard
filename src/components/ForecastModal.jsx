@@ -57,34 +57,35 @@ function ForecastModal({ city, onClose }) {
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 mt-8">
           <DialogHeader className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
             <DialogTitle className="flex flex-col gap-2 w-full">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="flex flex-col sm:flex-col sm:items-start sm:justify-start gap-1">
                 <span className="text-lg sm:text-xl font-semibold">
                   {city}, {country}
                 </span>
 
-                <div className="flex flex-wrap items-center gap-3">
-                  <p className="text-xs text-muted-foreground">
-                    Last updated: {formatTime(fulfilledTimeStamp)}
-                  </p>
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 justify-between sm:justify-start">
+                  <div className="flex items-center ">
+                    <p className="text-xs text-muted-foreground">
+                      Last updated: {formatTime(fulfilledTimeStamp)}
+                    </p>
 
-                  <button
-                    onClick={refetch}
-                    disabled={isFetching}
-                    className="
-                      flex items-center justify-center
-                      h-7 w-7 rounded-md border
-                      hover:bg-muted disabled:opacity-50
+                    <button
+                      onClick={refetch}
+                      disabled={isFetching}
+                      className="
+                    flex items-center justify-center
+                    h-7 w-7 rounded-md border
+                    hover:bg-muted disabled:opacity-50
                     "
-                  >
-                    <RotateCw size={14} />
-                  </button>
+                    >
+                      <RotateCw size={14} />
+                    </button>
+                  </div>
+                  <div className="self-start sm:self-auto">
+                    <UnitToggle />
+                  </div>
                 </div>
               </div>
             </DialogTitle>
-
-            <div className="self-start sm:self-auto">
-              <UnitToggle />
-            </div>
           </DialogHeader>
 
           {isLoading && (
