@@ -26,10 +26,10 @@ function Dashboard() {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
   return (
-    <div className="min-h-screen mx-auto ">
+    <div className="min-h-screen mx-auto bg-accent">
       <Header />
 
-      <main className="p-6 max-w-7xl mx-auto">
+      <main className="p-6 max-w-7xl mx-auto ">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {citiesToShow.map((city) => (
             <CityWeatherCard

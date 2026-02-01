@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full border-b bg-gray-100">
+    <header className="w-full border-b bg-blue-100">
       <div
         className="
           mx-auto max-w-7xl

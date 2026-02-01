@@ -35,7 +35,7 @@ function CityWeatherCard({ city, onClick }) {
 
   // ---------------- render states ----------------
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return (
       <Card className="animate-pulse">
         <CardHeader>
@@ -96,15 +96,23 @@ function CityWeatherCard({ city, onClick }) {
                 <p className="text-xs text-muted-foreground">
                   Last updated: {formatTime(fulfilledTimeStamp)}
                 </p>
+
                 <button
-                  className="cursor-pointer rounded hover:bg-accent"
+                  className="cursor-pointer border-2 rounded-4xl  hover:bg-accent"
                   onClick={(e) => {
                     e.stopPropagation();
                     refetch();
                   }}
                   disabled={isFetching}
                 >
-                  {isFetching ? "Refreshing..." : <RotateCw size={16} />}
+                  <RotateCw
+                    size={16}
+                    className={
+                      isFetching
+                        ? "animate-spin text-blue-500"
+                        : "hover:animate-spin"
+                    }
+                  />
                 </button>
               </span>
             </CardTitle>
