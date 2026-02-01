@@ -84,6 +84,9 @@ function CityWeatherCard({ city, onClick }) {
     gap-0
   "
     >
+      {isFetching && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500 animate-pulse" />
+      )}
       {/* Header */}
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">

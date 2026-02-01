@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useSearchCitiesQuery } from "../store/api/weatherApi";
 
 function SearchInput({ onSelect }) {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [open, setOpen] = useState(false);
 
-  const { data, isFetching } = useSearchCitiesQuery(query, {
-    skip: query.length < 2,
+  const { data, isFetching } = useSearchCitiesQuery(debouncedQuery, {
+    skip: debouncedQuery.length < 2,
   });
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [query]);
 
   const handleSelect = (item) => {
     onSelect(item.name);
@@ -53,7 +62,7 @@ function SearchInput({ onSelect }) {
               key={item.id}
               onClick={() => handleSelect(item)}
               className="
-                px-4 py-2
+                px-4 
                 cursor-pointer
                 hover:bg-accent
                 active:bg-accent
