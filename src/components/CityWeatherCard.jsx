@@ -126,7 +126,7 @@ function CityWeatherCard({ city, onClick }) {
                   <RotateCw
                     size={16}
                     className={
-                      isFetching
+                      showLoader
                         ? "animate-spin text-blue-500"
                         : "hover:animate-spin"
                     }
