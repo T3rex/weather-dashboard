@@ -38,11 +38,18 @@ The app displays current weather for multiple cities, allows users to manage fav
 - Manual refresh button
 - Displays last fetched timestamp
 
-⚙️ Settings
+# ⚙️ Settings
 
 - Temperature unit toggle (°C / °F)
 - Unit preference persists across refresh
 - Charts and cards react instantly to unit changes
+
+# Authentication
+
+- User authentication using Clerk.dev
+- Google Sign-In support
+- Forecast data required user to be logged in
+- Current weather data accessible without login
 
 # 🧠 Design Decisions
 
@@ -124,6 +131,7 @@ All Redux-related logic lives inside the store/ directory, keeping state managem
 - Tailwind CSS
 - shadcn/ui
 - Recharts
+- Clerk.dev (Authentication)
 
 # 🚀 Installation & Running Locally
 
@@ -156,13 +164,14 @@ npm run dev
 ```
 VITE_BASE_URL="https://api.weatherapi.com/v1"
 VITE_WEATHER_API_KEY="your_api_key_here"
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
 ```
 
 # Todo
 
 - [ ] Add unit tests
 - [ ] Improve mobile responsiveness
-- [ ] Add authentication and google sign-in
+- [x] Add authentication and google sign-in
 
 # Contributing
 

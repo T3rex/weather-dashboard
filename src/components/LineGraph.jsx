@@ -113,7 +113,7 @@ export default function LineGraph({ data, type }) {
               name="Temp"
               stroke="#2563eb"
               strokeWidth={2.5}
-              dot={false}
+              dot={true}
               activeDot={{ r: 4 }}
             />
           )}
