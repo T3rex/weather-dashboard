@@ -4,11 +4,13 @@ import CityWeatherCard from "../components/CityWeatherCard";
 import ForecastModal from "../components/ForecastModal";
 import { useSelector } from "react-redux";
 import Footer from "@/components/Footer";
+import { SignedIn, useAuth, SignIn } from "@clerk/clerk-react";
 
 function Dashboard() {
   const favorites = useSelector((state) => state.root.favorites.cities);
   const cities = useSelector((state) => state.root.weather.cities);
   const [activeCity, setActiveCity] = useState(null);
+  const { isSignedIn } = useAuth();
 
   const citiesToShow = Array.from(new Set([...favorites, ...cities]));
 
@@ -36,9 +38,28 @@ function Dashboard() {
       </main>
       <Footer />
 
-      {activeCity && (
-        <ForecastModal city={activeCity} onClose={() => setActiveCity(null)} />
-      )}
+      {activeCity &&
+        (isSignedIn ? (
+          <SignedIn>
+            <ForecastModal
+              city={activeCity}
+              onClose={() => setActiveCity(null)}
+            />
+          </SignedIn>
+        ) : (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+            <div className="relative">
+              {/* Close button for the auth modal */}
+              <button
+                onClick={() => setActiveCity(null)}
+                className="absolute -top-10 right-0 text-white hover:underline text-sm"
+              >
+                Close
+              </button>
+              <SignIn routing="hash" />
+            </div>
+          </div>
+        ))}
     </div>
   );
 }
