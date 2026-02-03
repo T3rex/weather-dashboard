@@ -1,79 +1,69 @@
-# 🌤️ Weather Dashboard
+# 🌤️ [Weather Dashboard](https://weather-dash99.vercel.app)
 
 A modern weather dashboard built with React, Redux Toolkit, and RTK Query.
 The app displays current weather for multiple cities, allows users to manage favorites, view detailed forecasts in a modal with charts, and control settings like temperature units.
 
 **Designed with clean state management, predictable caching, automatic polling and explicit user control in mind.**
 
-## Deployed link : [Weather Dashboard](https://weather-dash99.vercel.app/)
+## Deployed link : https://weather-dash99.vercel.app
 
-# ✨ Features
+## ✨ Features
 
-## 🌍 Dashboard
+### 🌍 Real-Time Dashboard
 
-- Displays weather for at least 6 cities on initial load
-- Each city is rendered as a compact, interactive card
-- Manual refresh support with last-updated timestamp
-- Background polling every 60 seconds while modal is open
+- **Initial Load**: Displays weather data for at least 6 cities upon startup.
 
-## ⭐ Favorites
+- **Live Updates**: Background polling refreshes city cards every 60 seconds to ensure data freshness.
+
+- **Interactive Cards**: Compact city cards provide immediate weather snapshots and open detailed views on click.
+
+### ⭐ Favorites
 
 - Mark/unmark cities as favorites
 - Favorites persist across browser refresh
 - Favorites influence dashboard rendering logic
 
-## 🔍 City Search & Autocomplete
+### 🔍 Smart Search & Autocomplete
 
-- Search cities using autocomplete
-- Results fetched only after 2+ characters
-- Click to add a city to the dashboard
-- Clean dropdown UX with loading & empty states
+- **Autocomplete**: Intelligent city search that fetches suggestions after typing 2+ characters.
 
-## 📊 Forecast (Modal-based)
+- **Dynamic Addition**: Add new cities to your dashboard instantly from search results.
 
-- Forecast opens in a modal, not a new page
-- Fetches data only when a city card is clicked
-- Daily / Hourly toggle
-- Line charts, Area charts built with Recharts
-- Manual refresh button
-- Displays last fetched timestamp
+### 📊 Advanced Forecasting (Authenticated)
 
-# ⚙️ Settings
+- **Modal-Based View**: Detailed forecasts open in a seamless modal overlay.
 
-- Temperature unit toggle (°C / °F)
-- Unit preference persists across refresh
-- Charts and cards react instantly to unit changes
+- **Data Visualization**: Interactive Line and Area charts built with Recharts for daily and hourly trends.
 
-# Authentication
+- **On-Demand Fetching**: Forecast data is fetched only when a specific city is selected to optimize bandwidth.
 
-- User authentication using Clerk.dev
-- Google Sign-In support
-- Forecast data required user to be logged in
-- Current weather data accessible without login
+### ⭐ Personalization & Settings
 
-# 🧠 Design Decisions
+- **Favorites**: Mark cities as favorites to have them persist across sessions via local storage.
 
-## Why RTK Query?
+- **Unit Conversion**: Toggle between Celsius (°C) and Fahrenheit (°F) with instant updates across all cards and charts.
 
-- Eliminates manual loading/error state handling
-- Built-in caching, refetching, polling, and metadata
-- Clean separation between UI and data-fetching logic
+- **Persistence**: User preferences for units and favorite cities are remembered between browser refreshes.
 
-## Caching Strategy
+---
 
-- In-memory caching only (no API cache persistence)
-- Cache duration set to 60 seconds
-- Explicit manual refetch buttons for user control
-- Cache resets on full page reload (intentional)
+# 🧠 Design Decisions & Architecture
 
-## Polling
+### State Management with Redux Toolkit (RTK)
 
-- Current weather data on the dashboard is automatically refreshed using RTK Query polling
-- Polling interval is set to 60 seconds
-- Polling runs only while the dashboard is mounted/tab is active
-- Each city card updates silently in the background without UI flicker
-- The last updated timestamp is shown to indicate data freshness
-- Manual refresh is still available and works alongside polling
+The app uses a centralized store with a rootReducer and RTK Query for API interactions.
+
+- **RTK Query**: Handles the complexity of data fetching, loading states, error handling, and caching automatically.
+
+- **Caching Strategy**: Implements an in-memory cache with a 60-second duration (keepUnusedDataFor: 60). This ensures that navigating back to a recently viewed city doesn't trigger unnecessary network requests.
+
+- **Polling**: Automatic polling is configured at the API level, allowing the dashboard to update silently without UI flickers.
+
+### Authentication via Clerk
+
+- **Secure Access**: Utilizes Clerk.dev for robust user authentication, including Google Sign-In.
+
+- **Protected Features**: While current weather is public, the detailed forecast data is restricted to logged-in users to protect API usage and provide a personalized experience.
 
 # 🗂️ Folder Structure
 
@@ -123,17 +113,21 @@ src/
 
 All Redux-related logic lives inside the store/ directory, keeping state management centralized and predictable.
 
-# 🧪 Tech Stack
+## 🧪 Tech Stack
 
-- React (Vite)
-- Redux Toolkit
-- RTK Query
-- Tailwind CSS
-- shadcn/ui
-- Recharts
-- Clerk.dev (Authentication)
+- Frontend: React 19 (Vite)
 
-# 🚀 Installation & Running Locally
+- State/Data: Redux Toolkit & RTK Query
+
+- Styling: Tailwind CSS & shadcn/ui
+
+- Charts: Recharts
+
+- Auth: Clerk.dev
+
+- Icons: Lucide-React
+
+## 🚀 Installation & Running Locally
 
 - Clone the repository using
 
@@ -156,7 +150,7 @@ npm run dev
 
 - Open http://localhost:5173 in your browser to view the app.
 
-# 🌐 API Keys
+## 🌐 API Keys
 
 - Sign up at https://openweathermap.org/api to get a free API key.
 - Create a `.env` file in the project root with the following content:
@@ -167,12 +161,12 @@ VITE_WEATHER_API_KEY="your_api_key_here"
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
 ```
 
-# Todo
+## Todo
 
 - [ ] Add unit tests
 - [ ] Improve mobile responsiveness
 - [x] Add authentication and google sign-in
 
-# Contributing
+## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
