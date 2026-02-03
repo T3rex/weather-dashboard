@@ -17,12 +17,6 @@ The app displays current weather for multiple cities, allows users to manage fav
 
 - **Interactive Cards**: Compact city cards provide immediate weather snapshots and open detailed views on click.
 
-### ⭐ Favorites
-
-- Mark/unmark cities as favorites
-- Favorites persist across browser refresh
-- Favorites influence dashboard rendering logic
-
 ### 🔍 Smart Search & Autocomplete
 
 - **Autocomplete**: Intelligent city search that fetches suggestions after typing 2+ characters.
@@ -64,6 +58,8 @@ The app uses a centralized store with a rootReducer and RTK Query for API intera
 - **Secure Access**: Utilizes Clerk.dev for robust user authentication, including Google Sign-In.
 
 - **Protected Features**: While current weather is public, the detailed forecast data is restricted to logged-in users to protect API usage and provide a personalized experience.
+
+---
 
 # 🗂️ Folder Structure
 
@@ -116,15 +112,10 @@ All Redux-related logic lives inside the store/ directory, keeping state managem
 ## 🧪 Tech Stack
 
 - Frontend: React 19 (Vite)
-
 - State/Data: Redux Toolkit & RTK Query
-
 - Styling: Tailwind CSS & shadcn/ui
-
 - Charts: Recharts
-
 - Auth: Clerk.dev
-
 - Icons: Lucide-React
 
 ## 🚀 Installation & Running Locally
@@ -152,7 +143,7 @@ npm run dev
 
 ## 🌐 API Keys
 
-- Sign up at https://openweathermap.org/api to get a free API key.
+- Sign up at http://api.weatherapi.com/v1 to get a free API key.
 - Create a `.env` file in the project root with the following content:
 
 ```
@@ -164,7 +155,7 @@ VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
 ## Todo
 
 - [ ] Add unit tests
-- [ ] Improve mobile responsiveness
+- [x] Improve mobile responsiveness
 - [x] Add authentication and google sign-in
 
 ## Contributing
